@@ -1,1 +1,1 @@
-# vim
+# vim及theme配置文件
