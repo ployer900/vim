@@ -15,6 +15,10 @@
     let Peach = "ctermfg=209 ctermbg=NONE cterm=NONE"
     let Purple = "ctermfg=141 ctermbg=NONE cterm=NONE"
     let Red = "ctermfg=196 ctermbg=NONE cterm=NONE"
+    let IdentifierC= "ctermfg=055 ctermbg=NONE cterm=NONE"
+    let NormalC= "ctermfg=25 ctermbg=NONE cterm=NONE"
+  endif
+  if bgcolor == "dark"
   endif
   if bgcolor == "dark"
     let Black = "ctermfg=240 ctermbg=NONE cterm=NONE"
@@ -24,8 +28,10 @@
     let Red = "ctermfg=203 ctermbg=NONE cterm=NONE"
   endif
 
+  let ConditionalC = "ctermfg=23 ctermbg=NONE cterm=NONE"
+  let GreenC = "ctermfg=130 ctermbg=NONE cterm=NONE"
   let Green = "ctermfg=107 ctermbg=NONE cterm=NONE"
-  let Gray = "ctermfg=250 ctermbg=NONE cterm=NONE"
+  let Gray = "ctermfg=249 ctermbg=NONE cterm=NONE"
   let Blue = "ctermfg=68 ctermbg=NONE cterm=NONE"
   let Pink = "ctermfg=205 ctermbg=NONE cterm=NONE"
   let Pink2 = "ctermfg=211 ctermbg=NONE cterm=NONE"
@@ -36,45 +42,49 @@
 
 " Light Background: {{{
   if bgcolor == "light"
-    exe "hi Boolean "         .Red
+    exe "hi Boolean "         .IdentifierC
     exe "hi Constant "        .Blue
     exe "hi Character "       .Blue
     exe "hi Comment "         .Gray
-    exe "hi Conditional "     .Peach
+    exe "hi Conditional "     .ConditionalC
     exe "hi Debug "           .Blue
     exe "hi Define "          .Peach
     exe "hi Delimiter "       .Silver
     exe "hi Exception "       .Red
     exe "hi Float "           .Red
-    exe "hi Function "        .Pink
-    exe "hi Identifier "      .Blue
+    exe "hi Function "        .IdentifierC
+    exe "hi Identifier "      .IdentifierC 
     exe "hi Ignore "          .Blue
     exe "hi Include "         .Purple
     exe "hi Keyword "         .Peach
-    exe "hi Label "           .Blue
+    exe "hi Label "           .ConditionalC
     exe "hi Macro "           .Purple
-    exe "hi Normal "          .Black
+    exe "hi Normal "          .NormalC
     exe "hi Number "          .Red
-    exe "hi Operator "        .Orange
+    exe "hi Operator "        .NormalC
     exe "hi PreCondit "       .Purple
     exe "hi PreProc "         .Peach
     exe "hi Repeat "          .Peach
     exe "hi Special "         .Pink
     exe "hi SpecialChar "     .Pink
     exe "hi SpecialComment "  .Blue
-    exe "hi Statement "       .Orange
+    exe "hi Statement "       .ConditionalC
     exe "hi StorageClass "    .Purple
-    exe "hi String "          .Green
+    exe "hi String "          .GreenC
     exe "hi Structure "       .Peach
     exe "hi Tag "             .Blue
     exe "hi Type "            .Orange
     exe "hi TypeDef "         .Purple2
 	exe "hi Semicolon "       .Black
+	exe "hi Parens "          .Black
+	exe "hi Braces "          .Black
+	exe "hi javaScriptValue " .IdentifierC
 
-    hi CursorLine     ctermfg=NONE        ctermbg=224         cterm=NONE
+    hi CursorLine     ctermfg=NONE        ctermbg=153         cterm=NONE
     hi Todo           ctermfg=232         ctermbg=216         cterm=NONE
     hi Underlined     ctermfg=NONE        ctermbg=NONE        cterm=underline
     hi Error          ctermfg=202         ctermbg=196         cterm=NONE
+	hi Linenr         ctermfg=251          ctermbg=NONE        cterm=NONE
   endif
 " }}}
 " Dark Background: {{{
