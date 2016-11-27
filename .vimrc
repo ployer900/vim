@@ -43,7 +43,6 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'mattn/emmet-vim'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 filetype indent on
@@ -134,16 +133,9 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 
-"javascript-libraries-syntax
-"let g:used_javascript_libs = 'underscore,jquery,react,flux,requirejs,handlebars,vue,angularjs,angularuirouter,jasmine,chai,ramda,d3'
-
 "colorscheme
 syntax on
 set background=light
-"let g:solarized_termolors=256
-"let g:solarized_termtrans=1
-"let g:solarized_contrast='normal'
-"let g:solarized_visibility='high'
 colorscheme mango
 
 "vim-indent-guide
