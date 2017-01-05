@@ -11,25 +11,26 @@
 " Colors: {{{
   if bgcolor == "light"
     let Black = "ctermfg=238 ctermbg=NONE cterm=NONE"
-    let Orange = "ctermfg=202 ctermbg=NONE cterm=NONE"
+    let Orange = "ctermfg=130 ctermbg=NONE cterm=NONE"
     let Peach = "ctermfg=209 ctermbg=NONE cterm=NONE"
     let Purple = "ctermfg=141 ctermbg=NONE cterm=NONE"
     let Red = "ctermfg=196 ctermbg=NONE cterm=NONE"
-    let IdentifierC= "ctermfg=055 ctermbg=NONE cterm=NONE"
-    let NormalC= "ctermfg=25 ctermbg=NONE cterm=NONE"
+    let IdentifierC= "ctermfg=55 ctermbg=NONE cterm=NONE"
+    let NormalC= "ctermfg=239 ctermbg=NONE cterm=NONE"
   endif
   if bgcolor == "dark"
   endif
   if bgcolor == "dark"
     let Black = "ctermfg=240 ctermbg=NONE cterm=NONE"
-    let Orange = "ctermfg=214 ctermbg=NONE cterm=NONE"
+    let Orange = "ctermfg=216 ctermbg=NONE cterm=NONE"
     let Peach = "ctermfg=222 ctermbg=NONE cterm=NONE"
     let Purple = "ctermfg=153 ctermbg=NONE cterm=NONE"
     let Red = "ctermfg=203 ctermbg=NONE cterm=NONE"
   endif
 
   let ConditionalC = "ctermfg=23 ctermbg=NONE cterm=NONE"
-  let GreenC = "ctermfg=130 ctermbg=NONE cterm=NONE"
+  let ParentBrack = "ctermfg=17 ctermbg=NONE cterm=NONE"
+  let GreenC = "ctermfg=31 ctermbg=NONE cterm=NONE"
   let Green = "ctermfg=107 ctermbg=NONE cterm=NONE"
   let Gray = "ctermfg=249 ctermbg=NONE cterm=NONE"
   let Blue = "ctermfg=68 ctermbg=NONE cterm=NONE"
@@ -45,7 +46,7 @@
     exe "hi Boolean "         .IdentifierC
     exe "hi Constant "        .Blue
     exe "hi Character "       .Blue
-    exe "hi Comment "         .Gray
+    exe "hi Comment "         .Orange
     exe "hi Conditional "     .ConditionalC
     exe "hi Debug "           .Blue
     exe "hi Define "          .Peach
@@ -59,7 +60,7 @@
     exe "hi Keyword "         .Peach
     exe "hi Label "           .ConditionalC
     exe "hi Macro "           .Purple
-    exe "hi Normal "          .NormalC
+    exe "hi Normal "          .ConditionalC
     exe "hi Number "          .Red
     exe "hi Operator "        .NormalC
     exe "hi PreCondit "       .Purple
@@ -76,8 +77,8 @@
     exe "hi Type "            .Orange
     exe "hi TypeDef "         .Purple2
 	exe "hi Semicolon "       .Black
-	exe "hi Parens "          .Black
-	exe "hi Braces "          .Black
+	exe "hi Parens "          .ParentBrack
+	exe "hi Braces "          .ParentBrack
 	exe "hi javaScriptValue " .IdentifierC
 
     hi CursorLine     ctermfg=NONE        ctermbg=153         cterm=NONE
