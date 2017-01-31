@@ -111,6 +111,7 @@ map <Leader>sa ggVG
 "NERDTree配置
 map <Leader>nn :NERDTreeToggle<CR>
 autocmd vimenter * NERDTree
+let NERDTreeWinPos=1
 let NERDTreeShowHidden = 1
 let NERDTreeIgnore=['\.pyc$', '\~$'] "不展示相应文件
 let NERDTreeMinimalUI=1	"不展示额外信息
@@ -196,7 +197,7 @@ let javascript_enable_domhtmlcss = 1
 
 "tagbar
 let g:tagbar_width = 30
-let g:tagbar_right = 1
+let g:tagbar_left = 1
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 nnoremap tag :TagbarToggle<CR>
 
