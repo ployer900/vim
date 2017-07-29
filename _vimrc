@@ -124,16 +124,16 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 "nertdtree-git-plugin
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \}
+			\ "Modified"  : "✹",
+			\ "Staged"    : "✚",
+			\ "Untracked" : "✭",
+			\ "Renamed"   : "➜",
+			\ "Unmerged"  : "═",
+			\ "Deleted"   : "✖",
+			\ "Dirty"     : "✗",
+			\ "Clean"     : "✔︎",
+			\ "Unknown"   : "?"
+			\}
 
 "ctrlp
 let g:ctrlp_map = '<Leader>p'
@@ -202,16 +202,21 @@ let javascript_enable_domhtmlcss = 1
 "javascript syntastic check
 let g:syntastic_error_symbol = '>>'
 let g:syntastic_warning_symbol = '>'
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_mode_map = {
+        \ "mode": "passive",
+        \ "active_filetypes": [],
+        \ "passive_filetypes": [] 
+		\}
 nnoremap lc <Esc>:lclose<CR>
 
 "tagbar
-let g:tagbar_width = 30
+let g:tagbar_width = 26
 let g:tagbar_left = 1
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 nnoremap tag :TagbarToggle<CR>
@@ -232,6 +237,13 @@ nnoremap tag :TagbarToggle<CR>
 "			\   'args': []
 "			\}
 "		\}
+"		
+
+"autoformat
+let g:autoformat_verbosemode = 1
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
 
 "scss,css
 au BufRead,BufNewFile *.scss set filetype=scss.css
@@ -244,21 +256,21 @@ let g:ycm_key_list_select_completion = ['<Tab>', '<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_semantic_triggers =  {
-            \   'c' : ['->', '.'],
-            \   'objc' : ['->', '.'],
-            \   'ocaml' : ['.', '#'],
-            \   'cpp,objcpp' : ['->', '.', '::'],
-            \   'perl' : ['->'],
-            \   'php' : ['->', '::', '(', 'use ', 'namespace ', '\'],
-            \   'cs,java,typescript,d,python,perl6,scala,vb,elixir,go' : ['.', 're!(?=[a-zA-Z]{3,4})'],
-            \   'html': ['<', '"', '</', ' '],
-            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
-            \   'ruby' : ['.', '::'],
-            \   'lua' : ['.', ':'],
-            \   'erlang' : [':'],
-            \   'haskell' : ['.', 're!.'],
-            \   'scss,css': [ 're!^\s{2,4}', 're!:\s+' ],
-            \ }
+			\   'c' : ['->', '.'],
+			\   'objc' : ['->', '.'],
+			\   'ocaml' : ['.', '#'],
+			\   'cpp,objcpp' : ['->', '.', '::'],
+			\   'perl' : ['->'],
+			\   'php' : ['->', '::', '(', 'use ', 'namespace ', '\'],
+			\   'cs,java,typescript,d,python,perl6,scala,vb,elixir,go' : ['.', 're!(?=[a-zA-Z]{3,4})'],
+			\   'html': ['<', '"', '</', ' '],
+			\   'vim' : ['re![_a-za-z]+[_\w]*\.'],
+			\   'ruby' : ['.', '::'],
+			\   'lua' : ['.', ':'],
+			\   'erlang' : [':'],
+			\   'haskell' : ['.', 're!.'],
+			\   'scss,css': [ 're!^\s{2,4}', 're!:\s+' ],
+			\ }
 
 "tern_for_vim
 let tern_show_signature_in_pum = 1
@@ -271,22 +283,22 @@ let g:jsx_ext_required = 0
 
 "startify
 let g:startify_custom_header = [
-	\ '					+------------------------------------------------------------+				',
-	\ '					| Feeling relax, cherishing time, hardworking and improving  |				',
-	\ '					| life quality and style. At last, to do something that help |				',
-	\ '					| anthor people and meaningful to society.    				 |				',
-	\ '					|															 |				',
-	\ '					| GITHUB: https://github.com/ployer900						 |				',
-	\ '					| EMAIL: yuhongliang900@163.com								 |				',
-	\ '					+------------------------------------------------------------+'
-	\]
+			\ '					+------------------------------------------------------------+				',
+			\ '					| Feeling relax, cherishing time, hardworking and improving  |				',
+			\ '					| life quality and style. At last, to do something that help |				',
+			\ '					| anthor people and meaningful to society.					 |				',
+			\ '					|															 |				',
+			\ '					| GITHUB: https://github.com/ployer900						 |				',
+			\ '					| EMAIL: yuhongliang900@163.com								 |				',
+			\ '					+------------------------------------------------------------+'
+			\]
 let g:startify_custom_footer = [
-	\ '					+-------------------------------------+'					,
-	\ '					| X + Y = Z ........... X + Y = X * Y |'					,
-	\ '					+-------------------------------------+'
-	\]
+			\ '					+-------------------------------------+'					,
+			\ '					| X + Y = Z ........... X + Y = X * Y |'					,
+			\ '					+-------------------------------------+'
+			\]
 let g:startify_skiplist = [
-	\ '/Users/yuhongliang/.*rc$'
-	\]
+			\ '/Users/yuhongliang/.*rc$'
+			\]
 let g:startify_padding_left = 20
 let g:startify_files_number = 8
