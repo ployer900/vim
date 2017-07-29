@@ -17,7 +17,7 @@ set nobackup
 set clipboard=unnamed
 set noswapfile
 set showcmd
-set foldmethod=indent
+"set foldmethod=indent
 set mouse=a
 set encoding=utf-8
 
@@ -30,40 +30,37 @@ call vundle#begin()
 
 "插件列表
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'mhinz/vim-startify'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kien/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'othree/html5.vim'
+Plugin 'Yggdroot/indentLine'
+Plugin 'mattn/emmet-vim'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'othree/csscomplete.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'Yggdroot/indentLine'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'ternjs/tern_for_vim'
 Plugin 'DoxygenToolkit.vim'
 Plugin 'jiangmiao/auto-pairs'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'mattn/emmet-vim'
-"Plugin 'editorconfig/editorconfig-vim'
 Plugin 'hushicai/tagbar-javascript.vim'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'yonchu/accelerated-smooth-scroll'
 Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
-"Plugin 'gko/vim-coloresque'
-Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'mhinz/vim-signify'
-
-
-"snipmate
-"Plugin 'MarcWeber/vim-addon-mw-utils'
-"Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
+Plugin 'elentok/plaintasks.vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
 
 call vundle#end()
-"filetype indent on
-"filetype plugin on
 filetype plugin indent on
 syntax enable
 syntax on
@@ -91,12 +88,17 @@ nnoremap <C-j> <C-w><C-j>  "切换到下边的窗体
 nnoremap <C-k> <C-w><C-k>  "切换到上边的窗体
 nnoremap <C-h> <C-w><C-h>  "切换到左边的窗体
 nnoremap <C-l> <C-w><C-l>  "切换到右边的窗体
-nnoremap <C-q> <C-w>c	   "关闭当前窗体
+nnoremap <C-q> <C-w>c      "关闭当前窗体
 
 "关闭当前分屏
 nnoremap <Leader>cw <C-w>c
 nnoremap <Leader>w> 10<C-w>>
 nnoremap <Leader>w< 10<C-w><
+
+"tab标签切换
+nnoremap tn <Esc>:tabn<CR>
+nnoremap tp <Esc>:tabp<CR>
+nnoremap tc <Esc>:tabc<CR>
 
 "退回命令行模式快捷键
 inoremap jk <esc>
@@ -110,11 +112,12 @@ map <Leader>sa ggVG
 
 "NERDTree配置
 map <Leader>nn :NERDTreeToggle<CR>
-autocmd vimenter * NERDTree
+"autocmd vimenter * NERDTree
+let NERDTreeWinPos = 1
 let NERDTreeShowHidden = 1
-let NERDTreeIgnore=['\.pyc$', '\~$'] "不展示相应文件
-let NERDTreeMinimalUI=1	"不展示额外信息
-let NERDTreeCascadeSingleChildDir=0
+let NERDTreeIgnore = ['\.pyc$', '\~$'] "不展示相应文件
+let NERDTreeMinimalUI = 1 "不展示额外信息
+let NERDTreeCascadeSingleChildDir = 0
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -130,7 +133,7 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Dirty"     : "✗",
     \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
-	\}
+    \}
 
 "ctrlp
 let g:ctrlp_map = '<Leader>p'
@@ -141,7 +144,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|android\|ios'
 
 "ctrlp-funky
 nnoremap <Leader>fu :CtrlPFunky<CR>
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR> 
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
 let g:ctrlp_funky_syntax_highlight = 1
 
 "airline配置
@@ -150,20 +153,20 @@ let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
 set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
-"set term=xterm-256color
 set termencoding=utf-8
 
 "colorscheme
 syntax on
-"set t_Co=256
 set background=light
 colorscheme PaperColor
 
 "vim-indent-guide
 let g:indentLine_color_term = 251
-let g:indentLine_char = '│'
+let g:indentLine_char = ' '
 let g:indentLine_enabled = 1
-let g:indentLine_showFirstIndentLevel = 0 
+let g:indentLine_showFirstIndentLevel = 0
+let g:indentLine_leadingSpaceChar = '·'
+let g:indentLine_leadingSpaceEnabled = 1
 
 "nerdcommenter
 let g:NERDSpaceDelims = 1
@@ -173,44 +176,117 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 "doxygentoolkit
-let g:DoxygenToolkit_briefTag_pre = '@synopsis'
-let g:DoxygenToolkit_paramTag_pre = '@param '
-let g:DoxygenToolkit_returnTag = '@return'
+let g:DoxygenToolkit_compactDoc = 'yes'
+let g:DoxygenToolkit_fileTag = '@FileName '
+let g:DoxygenToolkit_versionTag = '@Version '
+let g:DoxygenToolkit_briefTag_pre = '@Synopsis '
+let g:DoxygenToolkit_paramTag_pre = '@Param '
+let g:DoxygenToolkit_returnTag = '@Return '
 let g:DoxygenToolkit_blockHeader = ''
 let g:DoxygenToolkit_blockFooter = ''
-let g:DoxygenToolkit_authorName = 'yuhongliang'
-let g:DoxygenToolkit_licenseTag = '@copyright all reserved'
+let g:DoxygenToolkit_authorName = 'ployer900, <yuhongliang900@163.com>'
+let g:DoxygenToolkit_licenseTag = 'MIT LICENSE'
 
-"airline 配置
-"主题
+"airline
 let g:airline_theme = 'xtermlight'
 
 "emmet
 let g:user_emmet_mode = 'a'
 let g:user_emmet_install_global = 0
-autocmd FileType html,css, EmmetInstall
-let g:user_emmet_leader_key='y'
+let g:user_emmet_leader_key = 'y'
+autocmd FileType html,css,EmmetInstall
 
 "javascript
 let javascript_enable_domhtmlcss = 1
 
+"javascript syntastic check
+let g:syntastic_error_symbol = '>>'
+let g:syntastic_warning_symbol = '>'
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_javascript_checkers = ['jshint']
+nnoremap lc <Esc>:lclose<CR>
+
 "tagbar
 let g:tagbar_width = 30
-let g:tagbar_right = 1
+let g:tagbar_left = 1
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 nnoremap tag :TagbarToggle<CR>
+
+"easytags
+"set tags=./tags;
+"let g:easytags_events = ['BufReadPost', 'BufWritePost']
+"let g:easytags_dynamic_files = 1
+"let g:easytags_async = 1
+"let g:easytags_dynamic_files = 2
+"let g:easytags_resolve_links = 1
+"let g:easytags_suppress_ctags_warning = 1
+"let g:easytags_auto_update = 1
+"let g:easytags_by_filetype = '~/tags'
+"let g:easytags_languages = {
+"			\ 'javascript': {
+"			\	'cmd': 'jsctags',
+"			\   'args': []
+"			\}
+"		\}
 
 "scss,css
 au BufRead,BufNewFile *.scss set filetype=scss.css
 autocmd FileType scss set iskeyword+=-
 
-if has('gui_running')
-	set lines=999 columns=999
-else 
-	if exists('+lines')
-		"set lines=50
-	endif
-	if exists('+columns')
-		"set columns=100
-	endif
-endif
+"ycm
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_key_list_select_completion = ['<Tab>', '<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_semantic_triggers =  {
+            \   'c' : ['->', '.'],
+            \   'objc' : ['->', '.'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::', '(', 'use ', 'namespace ', '\'],
+            \   'cs,java,typescript,d,python,perl6,scala,vb,elixir,go' : ['.', 're!(?=[a-zA-Z]{3,4})'],
+            \   'html': ['<', '"', '</', ' '],
+            \   'vim' : ['re![_a-za-z]+[_\w]*\.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \   'haskell' : ['.', 're!.'],
+            \   'scss,css': [ 're!^\s{2,4}', 're!:\s+' ],
+            \ }
+
+"tern_for_vim
+let tern_show_signature_in_pum = 1
+let tern_show_argument_hints = 'on_hold'
+autocmd FileType javascript nnoremap <leader>d :TernDef<CR>
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+
+"vim-jsx
+let g:jsx_ext_required = 0
+
+"startify
+let g:startify_custom_header = [
+	\ '					+------------------------------------------------------------+				',
+	\ '					| Feeling relax, cherishing time, hardworking and improving  |				',
+	\ '					| life quality and style. At last, to do something that help |				',
+	\ '					| anthor people and meaningful to society.    				 |				',
+	\ '					|															 |				',
+	\ '					| GITHUB: https://github.com/ployer900						 |				',
+	\ '					| EMAIL: yuhongliang900@163.com								 |				',
+	\ '					+------------------------------------------------------------+'
+	\]
+let g:startify_custom_footer = [
+	\ '					+-------------------------------------+'					,
+	\ '					| X + Y = Z ........... X + Y = X * Y |'					,
+	\ '					+-------------------------------------+'
+	\]
+let g:startify_skiplist = [
+	\ '/Users/yuhongliang/.*rc$'
+	\]
+let g:startify_padding_left = 20
+let g:startify_files_number = 8
