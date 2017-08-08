@@ -17,7 +17,8 @@ set nobackup
 set clipboard=unnamed
 set noswapfile
 set showcmd
-"set foldmethod=indent
+set foldmethod=indent
+set foldlevelstart=99
 set mouse=a
 set encoding=utf-8
 
@@ -54,11 +55,18 @@ Plugin 'suan/vim-instant-markdown'
 Plugin 'yonchu/accelerated-smooth-scroll'
 Plugin 'pangloss/vim-javascript'
 Plugin 'elzr/vim-json'
+Plugin 'axiaoxin/vim-json-line-format'
 Plugin 'mhinz/vim-signify'
 Plugin 'elentok/plaintasks.vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-easytags'
+Plugin 'sjl/vitality.vim'
+Plugin 'bling/vim-bufferline'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'leafgarland/typescript-vim'
+
 
 call vundle#end()
 filetype plugin indent on
@@ -100,6 +108,10 @@ nnoremap tn <Esc>:tabn<CR>
 nnoremap tp <Esc>:tabp<CR>
 nnoremap tc <Esc>:tabc<CR>
 
+"buffer切换
+nnoremap bn <Esc>:bn<CR>
+nnoremap bp <Esc>:bp<CR>
+
 "退回命令行模式快捷键
 inoremap jk <esc>
 vnoremap jk <esc>
@@ -118,8 +130,8 @@ let NERDTreeShowHidden = 1
 let NERDTreeIgnore = ['\.pyc$', '\~$'] "不展示相应文件
 let NERDTreeMinimalUI = 1 "不展示额外信息
 let NERDTreeCascadeSingleChildDir = 0
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "nertdtree-git-plugin
@@ -148,17 +160,36 @@ nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
 let g:ctrlp_funky_syntax_highlight = 1
 
 "airline配置
-set guifont=Inconsolata\ for\ Powerline:h15
-let g:Powerline_symbols = 'fancy'
-set encoding=utf-8
-set t_Co=256
-set fillchars+=stl:\ ,stlnc:\
-set termencoding=utf-8
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'kalisi'
+let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n'  : 'N',
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : 'V',
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S',
+      \ }
+let g:airline#extensions#syntastic#enabled = 1
+let airline#extensions#syntastic#error_symbol = 'E:'
+let airline#extensions#syntastic#warning_symbol = 'W:'
+
+"bufferline
+let g:bufferline_rotate = 1
+let g:bufferline_show_bufnr = 0
 
 "colorscheme
 syntax on
 set background=light
 colorscheme PaperColor
+
+highlight CursorLine guibg=lightblue ctermbg=lightgray
+highlight CursorColumn guibg=lightblue ctermbg=lightgray
 
 "vim-indent-guide
 let g:indentLine_color_term = 251
@@ -186,9 +217,6 @@ let g:DoxygenToolkit_blockHeader = ''
 let g:DoxygenToolkit_blockFooter = ''
 let g:DoxygenToolkit_authorName = 'ployer900, <yuhongliang900@163.com>'
 let g:DoxygenToolkit_licenseTag = 'MIT LICENSE'
-
-"airline
-let g:airline_theme = 'xtermlight'
 
 "emmet
 let g:user_emmet_mode = 'a'
@@ -220,6 +248,16 @@ let g:tagbar_width = 26
 let g:tagbar_left = 1
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 nnoremap tag :TagbarToggle<CR>
+
+"minibufexpl
+" let g:miniBufExplBRSplit = 1
+" highlight MBEVisibleNormal guibg=blue ctermbg=blue
+" highlight MBEVisibleActiveNormal guibg=blue ctermbg=blue
+" highlight MBEVisibleChanged guibg=yello ctermbg=yellow
+" highlight MBEVisibleActiveChanged guibg=yellow ctermbg=yellow
+
+"json
+let g:vim_json_syntax_conceal = 0
 
 "easytags
 "set tags=./tags;
