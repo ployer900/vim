@@ -1,0 +1,21 @@
+bind r source-file ~/.tmux.conf \; display-message "Config reloaded"
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+bind H resize-pane -L 10
+bind L resize-pane -R 10
+bind K resize-pane -U 5
+bind J resize-pane -D 5
+
+bind '"' split-window -c '#{pane_current_path}'
+bind '%' split-window -h -c '#{pane_current_path}'
+
+# getting tmux to copy a buffer to system clipboard
+set-option -g default-command "reattach-to-user-namespace -l zsh" # or bash...
+bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy" \; display-message "Copied tmux buffer to system clipboard"
+bind p run "reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux paste-buffer"
+
+
