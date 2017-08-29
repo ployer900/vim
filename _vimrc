@@ -42,7 +42,9 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'Yggdroot/indentLine'
 Plugin 'mattn/emmet-vim'
 Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'groenewege/vim-less'
 Plugin 'othree/csscomplete.vim'
+Plugin 'othree/yajs.vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'Valloric/YouCompleteMe'
@@ -50,6 +52,7 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'DoxygenToolkit.vim'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'majutsushi/tagbar'
 Plugin 'hushicai/tagbar-javascript.vim'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'yonchu/accelerated-smooth-scroll'
@@ -58,22 +61,19 @@ Plugin 'elzr/vim-json'
 Plugin 'axiaoxin/vim-json-line-format'
 Plugin 'mhinz/vim-signify'
 Plugin 'elentok/plaintasks.vim'
-Plugin 'mxw/vim-jsx'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
 Plugin 'sjl/vitality.vim'
 Plugin 'bling/vim-bufferline'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'tpope/vim-fugitive'
+Plugin 'itchyny/calendar.vim'
 Plugin 'leafgarland/typescript-vim'
-
 
 call vundle#end()
 filetype plugin indent on
-syntax enable
-syntax on
 autocmd BufRead,BufNewFile *.handlebars,*.hbs,*.mustache set ft=html syntax=handlebars
 autocmd BufRead,BufNewFile *.vue set ft=html syntax=html
+autocmd BufRead,BufNewFile *.less.module set ft=less syntax=less
+autocmd BufRead,BufNewFile *.ts,*.tsx set ft=typescript
 
 "设置leader
 let mapleader=","
@@ -126,6 +126,7 @@ map <Leader>sa ggVG
 map <Leader>nn :NERDTreeToggle<CR>
 "autocmd vimenter * NERDTree
 let NERDTreeWinPos = 1
+let NERDTreeWinSize = 36
 let NERDTreeShowHidden = 1
 let NERDTreeIgnore = ['\.pyc$', '\~$'] "不展示相应文件
 let NERDTreeMinimalUI = 1 "不展示额外信息
@@ -184,6 +185,7 @@ let g:bufferline_rotate = 1
 let g:bufferline_show_bufnr = 0
 
 "colorscheme
+syntax enable
 syntax on
 set background=light
 colorscheme PaperColor
@@ -244,7 +246,7 @@ let g:syntastic_mode_map = {
 nnoremap lc <Esc>:lclose<CR>
 
 "tagbar
-let g:tagbar_width = 26
+let g:tagbar_width = 31
 let g:tagbar_left = 1
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 nnoremap tag :TagbarToggle<CR>
