@@ -1,0 +1,13 @@
+{
+	"esversion": 6,
+	"quotmark": "single",
+	"trailingcomma": false,
+	"undef": true,
+	"unused": true,
+	"multistr": true,
+	"browser": true,
+	"devel": true,
+	"jquery": true,
+	"module": true,
+	"node": true
+}
