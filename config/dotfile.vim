@@ -1,3 +1,8 @@
+
+# iterm colorscheme
+# https://github.com/mbadolato/iTerm2-Color-Schemes
+# 使用solarized light colorscheme
+
 "编辑器基本功能设置
 "去除和vi的兼容性
 "避免出现不必要的问题
