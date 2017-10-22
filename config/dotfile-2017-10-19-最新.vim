@@ -242,7 +242,6 @@ let g:DoxygenToolkit_licenseTag = 'MIT LICENSE'
 "emmet
 let g:user_emmet_mode = 'a'
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,EmmetInstall
 
 "javascript
 let javascript_enable_domhtmlcss = 1
