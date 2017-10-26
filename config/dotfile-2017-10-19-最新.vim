@@ -16,6 +16,7 @@ set shiftwidth=4
 set expandtab
 set smarttab
 set cursorline
+set incsearch
 set hlsearch
 set ignorecase
 set wildmenu
@@ -123,15 +124,6 @@ nnoremap <Leader>w- 10<C-w>-
 nnoremap <Leader>nw <C-w><C-w>
 
 """"" 标签切换""""""
-"tab标签切换
-nnoremap tn <Esc>:tabn<CR>
-nnoremap tp <Esc>:tabp<CR>
-nnoremap tc <Esc>:tabc<CR>
-
-"buffer切换
-nnoremap bn <Esc>:BF<CR>
-nnoremap bp <Esc>:BB<CR>
-nnoremap bc <Esc>:BD<CR>
 
 "退回命令行模式快捷键
 inoremap jk <esc>
