@@ -1,7 +1,8 @@
 "iterm2 colorscheme --> https://github.com/mbadolato/iTerm2-Color-Schemes
 "font --> https://github.com/scotu/ubuntu-mono-powerline
+"google font(roboto mono, medium) --> https://github.com/google/fonts
 "fontmanage --> https://github.com/takac/vim-fontmanager
-"colorscheme --> solarized light colorscheme
+"colorscheme --> solarized light colorschemelarized light colorscheme
 "编辑器基本功能设置
 set nocompatible
 filetype on
@@ -14,6 +15,7 @@ set expandtab
 set smarttab
 set cursorline
 set incsearch
+set hlsearch
 set ignorecase
 set wildmenu
 set backspace=indent,eol,start
@@ -116,8 +118,10 @@ nnoremap <Leader>w- 10<C-w>-
 """"" 标签切换""""""
 
 "退回命令行模式快捷键
-inoremap <Leader>e <esc>
-vnoremap <Leader>e <esc>
+" inoremap <Leader>e <esc>
+" vnoremap <Leader>e <esc>
+inoremap <C-]> <esc>
+vnoremap <C-]> <esc>
 
 "取消高亮
 nnoremap <Leader>nl :nohl<CR>
@@ -308,4 +312,6 @@ let g:startify_skiplist = [
 			\ '/Users/yuhongliang/.*rc$'
 			\]
 let g:startify_padding_left = 32
-let g:startify_files_number = 15
+let g:startify_files_number = 20
+
+
