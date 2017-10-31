@@ -1,4 +1,5 @@
 "iterm2 colorscheme --> https://github.com/mbadolato/iTerm2-Color-Schemes
+"font --> https://github.com/scotu/ubuntu-mono-powerline
 "colorscheme --> solarized light colorscheme
 "编辑器基本功能设置
 set nocompatible
