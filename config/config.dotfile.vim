@@ -118,8 +118,6 @@ nnoremap <Leader>w- 10<C-w>-
 """"" 标签切换""""""
 
 "退回命令行模式快捷键
-" inoremap <Leader>e <esc>
-" vnoremap <Leader>e <esc>
 inoremap <C-]> <esc>
 vnoremap <C-]> <esc>
 
