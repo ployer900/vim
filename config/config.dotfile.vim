@@ -3,6 +3,7 @@
 "google font(roboto mono, medium) --> https://github.com/google/fonts
 "fontmanage --> https://github.com/takac/vim-fontmanager
 "colorscheme --> solarized light colorschemelarized light colorscheme
+"ascii art --> http://patorjk.com/software/taag/#p=display&f=Cursive&t=%20type%20coding
 "编辑器基本功能设置
 set nocompatible
 filetype on
@@ -56,6 +57,8 @@ Plugin 'DoxygenToolkit.vim'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'majutsushi/tagbar'
 Plugin 'hushicai/tagbar-javascript.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'yonchu/accelerated-smooth-scroll'
 Plugin 'elzr/vim-json'
@@ -69,7 +72,11 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'qpkorr/vim-bufkill'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ryanoasis/vim-devicons'
+"Plugin 't9md/vim-choosewin'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'endel/vim-github-colorscheme'
+Plugin 'google/vim-colorscheme-primary'
+Plugin 'rafi/awesome-vim-colorschemes'
 
 call vundle#end()
 
@@ -95,27 +102,22 @@ nmap <Leader>qq :q!<CR>
 nmap <Leader>wq :wq<CR>
 
 """""""分屏相关操作""""""""""
+nnoremap <Leader>cw <C-w>c
+
 nnoremap <C-j> <C-w><C-j>  
 nnoremap <C-k> <C-w><C-k>  
 nnoremap <C-h> <C-w><C-h>  
 nnoremap <C-l> <C-w><C-l>  
 
-"关闭当前分屏
-nnoremap <Leader>cw <C-w>c
 nnoremap <Leader>wl <C-w>L
 nnoremap <Leader>wh <C-w>H
 nnoremap <Leader>wj <C-w>J
 nnoremap <Leader>wk <C-w>K
 
-"调整宽度
-nnoremap <Leader>w> 10<C-w>>
-nnoremap <Leader>w< 10<C-w><
-
-"调整高度
-nnoremap <Leader>w+ 10<C-w>+
-nnoremap <Leader>w- 10<C-w>-
-
-""""" 标签切换""""""
+" nnoremap <Leader>w> 10<C-w>>
+" nnoremap <Leader>w< 10<C-w><
+" nnoremap <Leader>w+ 10<C-w>+
+" nnoremap <Leader>w- 10<C-w>-
 
 "退回命令行模式快捷键
 inoremap <C-]> <esc>
@@ -123,6 +125,12 @@ vnoremap <C-]> <esc>
 
 "取消高亮
 nnoremap <Leader>nl :nohl<CR>
+
+"禁用方向键
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
 
 "NERDTree配置
 map <Leader>nn :NERDTreeToggle<CR>
@@ -192,7 +200,7 @@ let airline#extensions#syntastic#warning_symbol = 'W:'
 syntax enable
 syntax on
 set background=light
-colorscheme Solarized
+colorscheme one
 
 highlight CursorLine guibg=lightblue ctermbg=lightgray
 highlight CursorColumn guibg=lightblue ctermbg=lightgray
@@ -209,8 +217,8 @@ let g:NERDTrimTrailingWhitespace = 1
 
 "doxygentoolkit
 let g:DoxygenToolkit_compactDoc = 'yes'
-let g:DoxygenToolkit_fileTag = '@FileName '
-let g:DoxygenToolkit_versionTag = '@Version '
+" let g:DoxygenToolkit_fileTag = '@FileName '
+" let g:DoxygenToolkit_versionTag = '@Version '
 let g:DoxygenToolkit_briefTag_pre = '@Synopsis '
 let g:DoxygenToolkit_paramTag_pre = '@Param '
 let g:DoxygenToolkit_returnTag = '@Return '
@@ -221,7 +229,8 @@ let g:DoxygenToolkit_licenseTag = 'MIT LICENSE'
 
 "emmet
 let g:user_emmet_mode = 'a'
-let g:user_emmet_install_global = 0
+let g:user_emmet_install_global = 1
+let g:user_emmet_leader_key = '<Tab>'
 
 "javascript
 let javascript_enable_domhtmlcss = 1
@@ -234,7 +243,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_highlighting = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_mode_map = {
         \ "mode": "passive",
         \ "active_filetypes": [],
@@ -290,26 +299,71 @@ autocmd FileType javascript setlocal omnifunc=tern#Complete
 "vim-jsx
 let g:jsx_ext_required = 0
 
+"multi-cursors
+let g:multi_cursor_quit_key='<C-]>'
+
+"singify
+highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
+highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
+highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
+highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
+
 "startify
+highlight StartifyBracket ctermfg=240
+highlight StartifyFooter  ctermfg=240
+highlight StartifyHeader  ctermfg=114
+highlight StartifyNumber  ctermfg=215
+highlight StartifyPath    ctermfg=245
+highlight StartifySlash   ctermfg=240
+highlight StartifySpecial ctermfg=240
+
+
 let g:startify_custom_header = [
-			\ '					            +------------------------------------------------------------+				',
-			\ '					            | Feeling relax, cherishing time, hardworking and improving  |				',
-			\ '					            | life quality and style. At last, to do something that help |				',
-			\ '				            	| anthor people and meaningful to society.					 |				',
-			\ '				            	|															 |				',
-			\ '				            	| GITHUB: https://github.com/ployer900						 |				',
-			\ '				            	| EMAIL: yuhongliang900@163.com								 |				',
-			\ '				            	+------------------------------------------------------------+'
-			\]
+            \'                                  _/_                        /             ',         
+            \'                                  /  __  , _   _    _. __ __/ o ____  _,   ',
+            \'                                  <__/ (_/_/_)_</_  (__(_)(_/_<_/ / <_(_)_ ',
+            \'                                  / /                            /|        ',
+            \'                                  / -                           |/         '
+            \]
+
 let g:startify_custom_footer = [
-			\ '                             +------------------------------------+'					,
-			\ '				            	| X + Y = Z ---------> X + Y = X * Y |'					,
-			\ '                             +------------------------------------+'
-			\]
+            \ '                                                                                                         ',
+            \ '					            +------------------------------------------------------------+				',
+            \ '					            | feeling relax, cherishing time, hardworking and improving  |				',
+            \ '					            | life quality and style. at last, to do something that help |				',
+            \ '				            	| anthor people and meaningful to society.					 |				',
+            \ '				            	|															 |				',
+            \ '				            	| github: https://github.com/ployer900						 |				',
+            \ '				            	| email: yuhongliang900@163.com								 |				',
+            \ '				            	+------------------------------------------------------------+'
+            \]
 let g:startify_skiplist = [
 			\ '/Users/yuhongliang/.*rc$'
 			\]
+let g:startify_bookmarks = [
+            \ {'mainchannel-reading': '~/project/meituan/app-waimai-reading/app-m-waimai-mainchannelnew-reading/package.json'},
+            \ {'app-reading': '~/project/meituan/app-waimai-reading/app-waimai-m-reading/package.json'},
+            \ {'mainchanel': '~/project/meituan/app-m-waimai-mainchannelnew/package.json'},
+            \ {'app': '~/project/meituan/app-waimai-m/package.json'},
+            \ {'order': '~/project/meituan/app-waimai-order/package.json'}
+            \]
+let g:startify_list_order = ['bookmarks', 'files', 'sessions']
 let g:startify_padding_left = 32
-let g:startify_files_number = 20
+let g:startify_files_number = 15
 
+" custom function
+nnoremap <silent> <Leader>b :call ToggleBackground()<CR>
+function! ToggleBackground()
+    if &background == "light"
+        set background=dark
+    else
+        set background=light
+    endif
+endfunction
 
+"hightlight git diff
+highlight DiffChange term=bold cterm=bold ctermfg=23 ctermbg=222
+highlight DiffAdd term=bold cterm=bold ctermfg=195 ctermbg=36
+highlight DiffDelete term=bold cterm=bold ctermfg=23 ctermbg=204
