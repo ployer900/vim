@@ -1,0 +1,399 @@
+"iterm2 colorscheme --> https://github.com/mbadolato/iTerm2-Color-Schemes
+"font --> https://github.com/scotu/ubuntu-mono-powerline
+"google font(roboto mono, medium) --> https://github.com/google/fonts
+"fontmanage --> https://github.com/takac/vim-fontmanager
+"colorscheme --> solarized light colorschemelarized light colorscheme
+"ascii art --> http://patorjk.com/software/taag/#p=display&f=Cursive&t=%20type%20coding
+"编辑器基本功能设置
+set nocompatible
+filetype on
+set number
+set smartindent
+set autoindent
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set smarttab
+set cursorline
+set incsearch
+set hlsearch
+set ignorecase
+set wildmenu
+set backspace=indent,eol,start
+set nobackup
+set clipboard=unnamed
+set noswapfile
+set showcmd
+set foldmethod=indent
+set foldlevelstart=99
+set encoding=utf-8
+set mouse=a
+set cmdheight=1
+set laststatus=2
+
+"让配置变更立即生效
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+"插件列表
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'mhinz/vim-startify'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Yggdroot/indentLine'
+Plugin 'DavidEGx/ctrlp-smarttabs'
+Plugin 'mkitt/tabline.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'chemzqm/vim-jsx-improve'
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'ternjs/tern_for_vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'majutsushi/tagbar'
+Plugin 'hushicai/tagbar-javascript.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'suan/vim-instant-markdown'
+Plugin 'yonchu/accelerated-smooth-scroll'
+Plugin 'elzr/vim-json'
+Plugin 'mhinz/vim-signify'
+Plugin 'elentok/plaintasks.vim'
+Plugin 'sjl/vitality.vim'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'gregsexton/gitv'
+Plugin 'tpope/vim-surround'
+Plugin 'dhruvasagar/vim-zoom'
+Plugin 'itchyny/calendar.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'qpkorr/vim-bufkill'
+Plugin 'mileszs/ack.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'artur-shaik/vim-javacomplete2'
+Plugin 'john2x/flatui.vim'
+Plugin 'morhetz/gruvbox'
+
+"java
+Plugin 'dinduks/vim-java-get-set'
+
+call vundle#end()
+
+filetype plugin indent on
+autocmd BufRead,BufNewFile *.handlebars,*.hbs,*.mustache set ft=html syntax=handlebars
+autocmd BufRead,BufNewFile *.vue,*.ftl,*.wxml set ft=html syntax=html
+autocmd BufRead,BufNewFile *.ts,*.tsx set ft=typescript
+autocmd BufRead,BufNewFile *.scss,*.less,*.less.module,*.wxss set filetype=scss.css
+autocmd FileType scss set iskeyword+=-
+
+"设置leader
+let mapleader=","
+
+"切到行首行尾
+nmap <Leader>b 0
+nmap <Leader>e $
+
+"保存
+nmap <Leader>w :w<CR>
+"关闭并不保存
+nmap <Leader>qq :q!<CR>
+"保存并退出
+nmap <Leader>wq :wq<CR>
+"分屏全屏切换
+nmap <Leader>zm <C-W>m
+
+"全选
+nnoremap <Leader>sa ggVG
+
+"""""""分屏相关操作""""""""""
+nnoremap <Leader>cw <C-w>c
+
+nnoremap <C-j> <C-w><C-j>  
+nnoremap <C-k> <C-w><C-k>  
+nnoremap <C-h> <C-w><C-h>  
+nnoremap <C-l> <C-w><C-l>  
+
+nnoremap <Leader>wl <C-w>L
+nnoremap <Leader>wh <C-w>H
+nnoremap <Leader>wj <C-w>J
+nnoremap <Leader>wk <C-w>K
+
+nnoremap <Leader>w> 10<C-w>>
+nnoremap <Leader>w< 10<C-w><
+nnoremap <Leader>w+ 10<C-w>+
+nnoremap <Leader>w- 10<C-w>-
+
+"退回命令行模式快捷键
+inoremap <C-]> <esc>
+vnoremap <C-]> <esc>
+
+"取消高亮
+nnoremap <Leader>nl :nohl<CR>
+
+"禁用方向键
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+
+"NERDTree配置
+map <Leader>nn :NERDTreeToggle<CR>
+let NERDTreeWinPos = 0
+let NERDTreeWinSize = 36
+let NERDTreeShowHidden = 1
+let NERDTreeIgnore = ['\.pyc$', '\~$'] "不展示相应文件
+let NERDTreeMinimalUI = 1 "不展示额外信息
+let NERDTreeCascadeSingleChildDir = 0
+let g:NERDTreeDirArrowExpandable = '+'
+let g:NERDTreeDirArrowCollapsible = '-'
+let NERDTreeQuitOnOpen = 0
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"nertdtree-git-plugin
+let g:NERDTreeIndicatorMapCustom = {
+            \ "Modified"  : "✹",
+            \ "Staged"    : "✚",
+            \ "Untracked" : "✭",
+            \ "Renamed"   : "➜",
+            \ "Unmerged"  : "═",
+            \ "Deleted"   : "✖",
+            \ "Dirty"     : "✗",
+            \ "Clean"     : "✔︎",
+            \ "Unknown"   : "?"
+            \}
+
+"ctrlp
+let g:ctrlp_map = '<Leader>p'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = 'cortex_modules\|node_modules\|DS_Store\|git\|android\|ios\|dist\|target\|release\|build\|test\'
+let g:ctrlp_match_window = 'bottom,order:ttb,min:1,max:20,results:30'
+let g:ctrlp_prompt_mappings = {
+\ 'PrtClearCache()': ['R']
+\}
+let g:ctrlp_extensions = ['smarttabs']
+nnoremap <Leader>t :CtrlPSmartTabs<CR>
+set wildignore+=*/tmp/*,*/target/*,*/release/*,*/build/*,*/test/*,*.so,*.o,*.a,*.obj,*.swp,*.zip,*.pyc,*.pyo,*.class,.DS_Store
+
+"ctrlp-funky
+nnoremap <Leader>fu :CtrlPFunky<CR>
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR>
+let g:ctrlp_funky_syntax_highlight = 1
+let g:ctrlp_funky_multi_buffers = 1
+let g:ctrlp_funky_matchtype = 'path'
+
+"airline配置
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'papercolor'
+let g:airline_mode_map = {
+    	\ '__' : '-',
+    	\ 'n'  : 'N',
+    	\ 'i'  : 'I',
+    	\ 'R'  : 'R',
+    	\ 'c'  : 'C',
+    	\ 'v'  : 'V',
+    	\ 'V'  : 'V',
+    	\ '' : 'V',
+    	\ 's'  : 'S',
+    	\ 'S'  : 'S',
+    	\ '' : 'S',
+    	\ }
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let airline#extensions#syntastic#error_symbol = 'E:'
+let airline#extensions#syntastic#warning_symbol = 'W:'
+
+"colorscheme
+" if (empty($TMUX))
+  " if (has("nvim"))
+    " let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  " endif
+  " if (has("termguicolors"))
+    " set termguicolors
+  " endif
+" endif
+syntax enable
+syntax on
+set background=light
+colorscheme flatui
+
+highlight CursorLine guibg=lightblue ctermbg=255
+highlight CursorColumn guibg=lightblue ctermbg=255
+
+"vim-indent-guide
+let g:indentLine_faster = 1
+let g:indentLine_enabled = 1
+let g:indentLine_leadingSpaceChar = '-'
+let g:indentLine_leadingSpaceEnabled = 0
+
+"nerdcommenter
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+
+"emmet
+let g:user_emmet_mode = 'a'
+let g:user_emmet_install_global = 1
+autocmd FileType html,css EmmetInstall
+
+"javascript
+let javascript_enable_domhtmlcss = 1
+
+"javascript syntastic check
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_highlighting = 1
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_java_checkers = []
+let g:syntastic_mode_map = {
+        \ "mode": "passive",
+        \ "active_filetypes": [],
+        \ "passive_filetypes": []
+		\}
+
+"tagbar
+let g:tagbar_iconchars = ['+', '-']
+let g:tagbar_width = 31
+let g:tagbar_left = 0
+let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
+nnoremap tag :TagbarToggle<CR>
+
+"json
+let g:vim_json_syntax_conceal = 0
+
+"autoformat
+let g:autoformat_verbosemode = 0
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+
+"ycm
+set completeopt-=preview
+let g:ycm_complete_in_comments = 0
+let g:ycm_complete_in_strings = 0
+let g:ycm_key_list_select_completion = ['<Tab>', '<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_semantic_triggers =  {
+			\   'c' : ['->', '.'],
+			\   'objc' : ['->', '.'],
+			\   'ocaml' : ['.', '#'],
+			\   'cpp,objcpp' : ['->', '.', '::'],
+			\   'perl' : ['->'],
+			\   'php' : ['->', '::', '(', 'use ', 'namespace ', '\'],
+			\   'cs,java,typescript,d,python,perl6,scala,vb,elixir,go' : ['.', 're!(?=[a-zA-Z]{3,4})'],
+			\   'html': ['<', '"', '</', ' '],
+			\   'vim' : ['re![_a-za-z]+[_\w]*\.'],
+			\   'ruby' : ['.', '::'],
+			\   'lua' : ['.', ':'],
+			\   'erlang' : [':'],
+			\   'haskell' : ['.', 're!.'],
+			\   'scss,css': [ 're!^\s{2,4}', 're!:\s+' ],
+			\ }
+
+"tern_for_vim
+let tern_show_signature_in_pum = 1
+let tern_show_argument_hints = 'no'
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+"vim-jsx
+let g:jsx_ext_required = 0
+
+"multi-cursors
+let g:multi_cursor_quit_key='<C-]>'
+
+"singify
+highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
+highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
+highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
+highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
+
+"fugitive
+highlight DiffChange term=bold cterm=bold ctermfg=23 ctermbg=222
+highlight DiffAdd term=bold cterm=bold ctermfg=195 ctermbg=121
+highlight DiffDelete term=bold cterm=bold ctermfg=23 ctermbg=204
+
+"startify
+highlight StartifyBracket ctermfg=240
+highlight StartifyFooter  ctermfg=240
+highlight StartifyHeader  ctermfg=114
+highlight StartifyNumber  ctermfg=215
+highlight StartifyPath    ctermfg=245
+highlight StartifySlash   ctermfg=240
+highlight StartifySpecial ctermfg=240
+
+
+let g:startify_custom_header = [
+            \'                                  _/_                        /             ',         
+            \'                                  /  __  , _   _    _. __ __/ o ____  _,   ',
+            \'                                  <__/ (_/_/_)_</_  (__(_)(_/_<_/ / <_(_)_ ',
+            \'                                  / /                            /|        ',
+            \'                                  / -                           |/         '
+            \]
+
+let g:startify_custom_footer = [
+            \ '                                                                                                         ',
+            \ '					            +------------------------------------------------------------+				',
+            \ '					            | feeling relax, cherishing time, hardworking and improving  |				',
+            \ '					            | life quality and style. at last, to do something that help |				',
+            \ '				            	| anthor people and meaningful to society.					 |				',
+            \ '				            	|															 |				',
+            \ '				            	| github: https://github.com/ployer900						 |				',
+            \ '				            	| email: yuhongliang900@163.com								 |				',
+            \ '				            	+------------------------------------------------------------+'
+            \]
+let g:startify_skiplist = [
+			\ '/Users/yuhongliang/.*rc$'
+			\]
+let g:startify_bookmarks = [
+            \ {'mainchannel-reading': '~/project/meituan/app-waimai-reading/app-m-waimai-mainchannelnew-reading/package.json'},
+            \ {'app-reading': '~/project/meituan/app-waimai-reading/app-waimai-m-reading/package.json'},
+            \ {'mainchanel': '~/project/meituan/app-m-waimai-mainchannelnew/package.json'},
+            \ {'app': '~/project/meituan/app-waimai-m/package.json'},
+            \ {'order': '~/project/meituan/app-waimai-order/package.json'}
+            \]
+let g:startify_list_order = ['bookmarks', 'files', 'sessions']
+let g:startify_padding_left = 22
+let g:startify_files_number = 15
+
+"UltiSnips
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<leader><tab>"
+let g:UltiSnipsJumpBackwardTrgger="<leader><tab>"
+let g:UltiSnipsListSnippets="<c-e>"
+
+"editorconifg
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
+
+"gitv
+let g:Gitv_OpenHorizontal = 0
+let g:Gitv_TruncateCommitSubjects = 1
+
+"ack
+nnoremap <Leader>a :Ack!<Space>
+let g:ack_autofold_results = 1
+let g:ackhighlight = 1
+let g:ack_default_options = " -s -H --nocolor --nogroup --column --smart-case --follow"
